@@ -1,0 +1,101 @@
+{% load static %}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<html>
+<head>
+    <title>Estructura basica Semantica en HTML5 y CSS3</title>
+    <meta charset="utf-8" />
+    <link rel=StyleSheet href="estilos.css" type="text/css" media="screen">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        header{
+            background-color: #F9F8FC;
+        }
+    
+        #logo{
+            margin: auto;
+            height: 250px;
+            width: 320px;
+            text-align: center;
+        }
+    
+        #logo h1{
+            font-family: 'Pacifico', cursive;
+            font-size: 58px;
+        }
+    
+        nav{
+        height: 60px;
+        background-color:#17181C;
+        text-align: center;
+        }
+    
+        nav ul{
+            list-style: none;
+            display: inline-block;
+            padding-top:10px;
+            padding-left:18px;
+        }
+    
+        nav ul li{
+            float: left;
+            margin-top: 0px;
+            margin-bottom:10px;
+        }
+    
+        nav ul li a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 18px;
+        }
+    
+        nav ul li a:hover{
+        background-color: #929fb3;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include '.\navBar.html' %}
+
+    <h1>Estructura básica Semántica en HTML5 y CSS3</h1>
+    <div class="content">
+    {% block content %}
+        {% for curso in listCursos %}
+        <header>
+            Curso: {{ curso.name }}
+        </header>
+        <p>
+            Cantidad de alumnos: {{ curso.alumnos }}
+        </p>
+        <section id="content">
+            <section id="principal">
+                Aprobados: {{ curso.approved}}
+                <article>
+                    Suspensos: {{ curso.suspense }}
+                </article>
+            </section>
+            <aside>
+                &lt;aside&gt;
+            </aside>
+        </section>
+        <footer>
+            &lt;footer&gt;
+        </footer>
+        {% endfor %}
+    {% endblock %}
+    </div>
+</body>
+
+</html>

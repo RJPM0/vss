@@ -1,0 +1,53 @@
+{% load static %}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="styleSheet" href="{% static 'css/estilos.css' %}">
+    <title>Lista de anuncios</title>
+    <style>
+        body{
+            color:black;
+            font-size:1em;
+        }
+        p{
+            text-align: left;
+            margin:0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        {% block content %}
+            <h1>Lista de anunc ios</h1>
+            {% for anuncio in anuncios %}
+            <h2>{{ anuncio.studen }}</h2>
+            
+                <div class="container-fluid" >
+                    <div class="row">
+                        <div id="image" class="col-md-3">
+                            <img src="{{ anuncio.photo.url }}" class="img-thumbnail" alt="{{anuncio.studen}}">
+                        </div>
+                        <div id="info" class="col-md-9">
+                            <p>Titulación: <i>{{ anuncio.title }}</i></p>
+                            <p>Estudiante: <i>{{ anuncio.studen }}</i></p>
+                            <p>Nota puntuada: <i>{{ anuncio.note }}</i></p>
+                            <p>Observaciones: <i>{{ anuncio.comentary}}</i></p>
+                            <p>Fecha Titulación: <i>{{ anuncio.datetitulation  }}</i></p>
+                            <p>Fecha Matriculación: <i>{{ anuncio.datematriculation }}</i></p>
+                        </div>
+                    </div>
+                    
+                </div>
+            
+            {% endfor %}
+        {% endblock %}
+    </div>
+</body>
+</html>
