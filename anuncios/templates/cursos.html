@@ -1,0 +1,78 @@
+{% load static %}
+{% load fontawesome_5 %}
+{% include 'starHtml.html' %}
+<title>Cursos</title>
+{% include 'navBar.html' %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="javascript:history.go(-2)">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="javascript:history.go(-1)">Centros</a></li>
+</ol>
+<br>
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Cursos</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                type specimen book. </p>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="min-height:50%;">
+    {% block content %}
+    <div class="row">
+        <div class="col-md-3 bg-red">
+            <a class="link-photo" data-lightbox="img" href="{{ centro.photo.url }}" title="{{ centro.name }}">
+                <img src="{{ centro.photo.url }}" alt="{{ centro.name }}" class="img-fluid" title="{{ centro.name }}">
+            </a>
+        </div>
+        <div class="col-md-9">
+            <p>
+                <strong>Centro:</strong> {{ centro.name }}
+            </p>
+            <p>
+                <strong>Dirección:</strong> {{ centro.address}}
+            </p>
+            <p>
+                <strong>En servicio:</strong> {{ centro.anyos_open }} años
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <!-- <ul class="list-group" style="cursor:pointer;"> -->
+            {% for curso in listCursos %}
+            <div class="col-md-6">
+                <a href="{% url 'student_list' %}?id={{ curso.id }}" class="cursos">
+                    <li class="list-group-item mt-3">
+                        <p>
+                            <h5>{{ curso.name }}:</h5>
+                        </p>
+                        <div class="container-fluid mt-5">
+                            <div class="row h5" style="">
+                                <div class="col-md-1">
+                                    {% fa5_icon 'user' 'fas' size='20' color='rgb(185, 174, 174)' title='Cantidad de alumnos' %}
+                                    {{ curso.alumnos }}
+                                </div>
+                                <div class="col-md-1">
+                                    {% fa5_icon 'smile-beam' 'fas' color='rgb(70, 129, 218)' title='Aprobados' %}
+                                    {{ curso.approved }}
+                                </div>
+                                <div class="col-md-1">
+                                    {% fa5_icon 'sad-tear' 'fas' color='rgb(209, 16, 16)' title='Suspensos' %}
+                                    {{ curso.suspense }}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </a>
+            </div>
+            {% endfor %}
+        <!-- </ul> -->
+    </div>
+    {% endblock %}
+</div>
+{% include 'footer.html' %}
+<script src="{% static 'js/executionMenu.js' %}"></script>
+<script src="{% static 'js/lightbox.min.js' %}"></script>
+{% include 'endHtml.html' %}

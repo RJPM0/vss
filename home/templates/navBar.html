@@ -1,16 +1,52 @@
 {% load static %}
+<!-- <link rel="stylesheet" href="{% static 'css\estilos.css' %}"> -->
+<style>
+    #menu a.activated {
+        /*efecto activo de menu seleccionado*/
+        color: rgb(223, 168, 168) !important;
+    }
+</style>
+<div class="container-fluid" style="padding:0px;">
+    <header>
+        <div id="logo" style="padding-top:50px;">
+            <div id="headPapelFlying" style="position:absolute;top:-100px;left:100px;">
+                <img src="{% static 'img/paperFly.PNG' %}" alt="" height="400">
+            </div>
+            <div id="headPapelFlying" style="position:absolute;top:103px;right:30px;">
+                <img src="{% static 'img/goteoHead.PNG' %}" alt="" height="200">
+            </div>
+            <!-- <img src="https://c0.klipartz.com/pngpicture/1010/772/gratis-png-cangrejo.png" alt="El centollo" height="170"> -->
+            <h1>Los Centrollos</h1>
+        </div>
+        <div id="pieNav">
+            <nav id='menu'>
+                <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label
+                    onclick='updatemenu()'></label>
+                <ul>
+                    <li><a id="inicio" href="{% url '' %}" class="" onclick="active(inicio)">Inicio</a></li>
+                    <li><a id="centros" href="{% url 'centros_list' %}" class="" onclick="active(centros)">Centros</a></li>
+                    <li><a id="ubicacion" href="#" class="" onclick="active(ubicacion)">Ubicación</a></li>
+                    <li><a id="contacto" href="#" class="" onclick="active(contacto)">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</div>
 
-<header>
-    <div id="logo">
-       <img src="crab.png" alt="El centollo">
-       <h1>El Centollo</h1>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="{% url '' %}">Menu</a></li>
-            <li><a href="#">Contacto</a></li>
-            <li><a href="#">Ubicación</a></li>
-            <li><a href="#">Reservas</a></li>
-        </ul>
-    </nav>
-</header>
+<script>
+    /*dropdown menu movil tablet*/
+    window.onload = function () {
+        if (!!window.menuActive && window.menuActive != undefined) {
+            active(window.menuActive);
+        }
+    };
+
+    function updatemenu() {
+        if (document.getElementById('responsive-menu').checked == true) {
+            document.getElementById('menu').style.borderBottomRightRadius = '0';
+            document.getElementById('menu').style.borderBottomLeftRadius = '0';
+        } else {
+            document.getElementById('menu').style.borderRadius = '10px';
+        }
+    }
+</script>

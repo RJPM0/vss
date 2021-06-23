@@ -1,101 +1,358 @@
 {% load static %}
-{% load bootstrap4 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-<html>
-<head>
-    <title>Estructura basica Semantica en HTML5 y CSS3</title>
-    <meta charset="utf-8" />
-    <link rel=StyleSheet href="estilos.css" type="text/css" media="screen">
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-    
-        header{
-            background-color: #F9F8FC;
-        }
-    
-        #logo{
-            margin: auto;
-            height: 250px;
-            width: 320px;
-            text-align: center;
-        }
-    
-        #logo h1{
-            font-family: 'Pacifico', cursive;
-            font-size: 58px;
-        }
-    
-        nav{
-        height: 60px;
-        background-color:#17181C;
-        text-align: center;
-        }
-    
-        nav ul{
-            list-style: none;
-            display: inline-block;
-            padding-top:10px;
-            padding-left:18px;
-        }
-    
-        nav ul li{
-            float: left;
-            margin-top: 0px;
-            margin-bottom:10px;
-        }
-    
-        nav ul li a {
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 20px;
-            padding: 18px;
-        }
-    
-        nav ul li a:hover{
-        background-color: #929fb3;
-        }
-    </style>
-</head>
-
-<body>
+{% include '.\starHtml.html' %}
+<title>Home</title>
 
     {% include '.\navBar.html' %}
-
-    <h1>Estructura básica Semántica en HTML5 y CSS3</h1>
-    <div class="content">
-    {% block content %}
-        {% for curso in listCursos %}
-        <header>
-            Curso: {{ curso.name }}
-        </header>
-        <p>
-            Cantidad de alumnos: {{ curso.alumnos }}
-        </p>
-        <section id="content">
-            <section id="principal">
-                Aprobados: {{ curso.approved}}
-                <article>
-                    Suspensos: {{ curso.suspense }}
-                </article>
-            </section>
-            <aside>
-                &lt;aside&gt;
-            </aside>
-        </section>
-        <footer>
-            &lt;footer&gt;
-        </footer>
-        {% endfor %}
-    {% endblock %}
+    <!-- Incluimos header y menu-->
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-8 order-md-1 col-sm-pull-8 order-sm-2 col-xs-8 order-2">
+                <p>
+                <h4 style="margin-bottom:30px;">
+                    Bienvenidos a "Los centrollos"
+                </h4>
+                </p>
+                <p style="font-size:21px;">
+                    Con temáticas de visualizar todas las notas de otros centros en la Región de Murcia. No te lo
+                    pierdas!
+                </p>
+            </div>
+            <div class="col-md-4 order-md-2 col-sm-push-4 order-sm-1 col-xs-4 order-1" style="text-align:center;">
+                <img class="img-fluid rounded p-5" style="vertical-align:middle;" src="{% static 'img/promocion.PNG' %}"
+                    alt="Promoción">
+            </div>
+        </div>
     </div>
-</body>
 
-</html>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4" style="text-align:center;">
+                <img class="img-fluid rounded p-4 mt-4" style="vertical-align:middle;"
+                    src="{% static 'img/profe.PNG' %}" alt="Promoción">
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-8" style="padding:80px;padding-left:0px;">
+                <p style="font-size:21px;">¿Eres profesor? Apuntate a esta tematica y ahorrate tiempo en la presentación
+                    de notas de tus alumnos</p>
+                <p style="font-size:21px;">Desde observaciones a alumnos hasta la posibilidad de que tengan que realizar
+                    proyectos como una oportunidad de aprobar.</p>
+            </div>
+        </div>
+    </div>
+    <hr style="margin-left:10%; margin-right:10%; margin-top:5%;" />
+    <div class="container-fluid parallax" style="margin-top:120px;">
+        <div class="container pt-3">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4" style="z-index:6;">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <div style="margin:auto;"><img class=" img-fluid" style="background-color:rgb(225, 240, 210);"
+                                                src="{% static 'img/profe_circul_draw.png' %}" alt="card image"></div>
+                                        <h4 class="card-title">Cuentas</h4>
+                                        <p class="card-text">Diseño personalizable con instrucciones muy intuitivos para
+                                            ustedes</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside">
+                                <div class="card">
+                                    <div class="card-body text-center mt-4">
+                                        <h4 class="card-title">Cuentas</h4>
+                                        <p class="card-text">Ponemos a dispoción como muchas webs cuentas pero
+                                            unicamente para profesor, tendrá a dispoción diversas herramientas como
+                                            "Notificaciones", "Citaciones", "Llamadas chat voz", "Publicaciones", etc.
+                                        </p>
+                                        <p class="card-text">No esperes a que te lo cuenten, ponles al días a tus
+                                            alumnos</p>
+                                        <!-- <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-skype"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-google"></i>
+                                                    </a>
+                                                </li>
+                                            </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4" style="z-index:5;">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <div style="margin:auto;"><img class=" img-fluid" style="background-color:rgb(225, 240, 210);"
+                                                src="{% static 'img/24h.png' %}" alt="card image" width="300"></div>
+                                        <h4 class="card-title">24H</h4>
+                                        <p class="card-text">Disponible de uso 24H, estes donde estes, hagas lo que
+                                            hagas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside">
+                                <div class="card">
+                                    <div class="card-body text-center mt-4">
+                                        <h4 class="card-title">24H</h4>
+                                        <p class="card-text">Tienes flexibilidad de uso las 24h del año. ¿Te encuentres
+                                            de vacaciones? Estes escalando una montaña o buzeando en el oceano tienes
+                                            acceso a tus datos de tu cuenta en cualquier lugar del planeta en el que
+                                            estes.
+                                        </p>
+                                        <p class="card-text">Si no tienes cuentas es poque no quieres.</p>
+                                        <!-- <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-skype"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-google"></i>
+                                                    </a>
+                                                </li>
+                                            </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4" style="z-index:4;">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <div style="margin:auto;"><img class=" img-fluid" style="background-color:rgb(225, 240, 210);"
+                                                src="{% static 'img/evento.png' %}" alt="card image" width="300"></div>
+                                        <h4 class="card-title">Eventos</h4>
+                                        <p class="card-text">Prepara tus actividades escolares o extraescolares</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside">
+                                <div class="card">
+                                    <div class="card-body text-center mt-4">
+                                        <h4 class="card-title">Eventos</h4>
+                                        <p class="card-text">Hay actividades que aun no se han realizado pero ¿estan
+                                            cerca?, publica las actividades escolares o extraescolares en nuestro tablon
+                                            de anuncios, se notificaran los eventos tanto a padres como a los
+                                            alumnos para que no pierdan la oportunidad de participar.</p>
+                                        <p class="card-text">Jugar solo es aburrido.</p>
+                                        <!-- <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-skype"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-google"></i>
+                                                    </a>
+                                                </li>
+                                            </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4" style="z-index:3;">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <div style="margin:auto;"><img class=" img-fluid" style="background-color:rgb(225, 240, 210);"
+                                                src="{% static 'img/calendary.png' %}" alt="card image" width="300"></div>
+                                        <h4 class="card-title">Tiempo de descanso</h4>
+                                        <p class="card-text">Ahorra tu tiempo en recordar que tienes que hacer, lo
+                                            haremos por tí</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside">
+                                <div class="card">
+                                    <div class="card-body text-center mt-4">
+                                        <h4 class="card-title">Tiempo de descanso</h4>
+                                        <p class="card-text">Te ponemos una gran herramienta de recuerdos. Crea tu
+                                            agenda virtual, no escatimes solo para estudios, lo puedes usar para lo que
+                                            quieras recordar a futuro, trabajos, examenes, casos de Estado, etc.</p>
+                                        <p class="card-text">Deja la mente solo para lo importante.</p>
+                                        <!-- <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-skype"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-google"></i>
+                                                    </a>
+                                                </li>
+                                            </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4" style="z-index:2;">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <div style="margin:auto;"><img class=" img-fluid" style="background-color:rgb(225, 240, 210);"
+                                                src="{% static 'img/calendary.png' %}" alt="card image" width="300"></div>
+                                        <h4 class="card-title">Tiempo de descanso</h4>
+                                        <p class="card-text">Ahorra tu tiempo en recordar que tienes que hacer, lo
+                                            haremos por tí</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside">
+                                <div class="card">
+                                    <div class="card-body text-center mt-4">
+                                        <h4 class="card-title">Tiempo de descanso</h4>
+                                        <p class="card-text">Te ponemos una gran herramienta de recuerdos. Crea tu
+                                            agenda virtual, no escatimes solo para estudios, lo puedes usar para lo que
+                                            quieras recordar a futuro, trabajos, examenes, casos de Estado, etc.</p>
+                                        <p class="card-text">Deja la mente solo para lo importante.</p>
+                                        <!-- <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-skype"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-google"></i>
+                                                    </a>
+                                                </li>
+                                            </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <div style="margin:auto;">
+                                            <img class=" img-fluid" style="background-color:rgb(225, 240, 210);"
+                                                src="{% static 'img/calendary.png' %}" alt="card image" width="300">
+                                        </div>
+                                        <h4 class="card-title">Tiempo de descanso</h4>
+                                        <p class="card-text">Ahorra tu tiempo en recordar que tienes que hacer, lo
+                                            haremos por tí</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="backside">
+                                <div class="card">
+                                    <div class="card-body text-center mt-4">
+                                        <h4 class="card-title">Tiempo de descanso</h4>
+                                        <p class="card-text">Te ponemos una gran herramienta de recuerdos. Crea tu
+                                            agenda virtual, no escatimes solo para estudios, lo puedes usar para lo que
+                                            quieras recordar a futuro, trabajos, examenes, casos de Estado, etc.</p>
+                                        <p class="card-text">Deja la mente solo para lo importante.</p>
+                                        <!-- <ul class="list-inline">
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-skype"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                        <i class="fa fa-google"></i>
+                                                    </a>
+                                                </li>
+                                            </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include '.\footer.html' %}
+    <script src="{% static 'js/executionMenu.js' %}"></script>
+{% include '.\endHtml.html' %}

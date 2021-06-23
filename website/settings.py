@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'anuncios.apps.AnunciosConfig',
     'home.apps.HomeConfig',
-    'bootstrap4'
+    'bootstrap4',
+    'fontawesome_5'
 ]
 
 MIDDLEWARE = [

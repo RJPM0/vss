@@ -1,0 +1,72 @@
+{% load static %}
+{% load fontawesome_5 %}
+{% include 'starHtml.html' %}
+<title>Alumnos</title>
+{% include 'navBar.html' %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="javascript:history.go(-3)">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="javascript:history.go(-2)">Centros</a></li>
+    <li class="breadcrumb-item"><a href="javascript:history.go(-1)">Cursos</a></li>
+</ol>
+{% block content %}
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Estudiantes de {{curso.name}}</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                type specimen book. </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-sm-2 col-4 h6">
+            <div class="panel-heading text-center"><label for="">Alumnos</label></div>
+            <div class="panel-body text-center">{% fa5_icon 'user' 'fas' size='20' color='rgb(185, 174, 174)' title='Cantidad de alumnos' %}
+                                    {{ curso.alumnos }}</div>
+        </div>
+        <div class="col-md-2 col-sm-2 col-4 h6">
+            <div class="panel-heading text-center"><label for="">Aprovados</label></div>
+            <div class="panel-body text-center">{% fa5_icon 'smile-beam' 'fas' color='rgb(70, 129, 218)' title='Aprobados' %}
+                                        {{ curso.approved }}</div>
+
+        </div>
+        <div class="col-md-2 col-sm-2 col-4 h6">
+            <div class="panel-heading text-center"><label for="">Suspensos</label></div>
+            <div class="panel-body text-center">{% fa5_icon 'sad-tear' 'fas' color='rgb(209, 16, 16)' title='Suspensos' %}
+                                    {{ curso.suspense }}</div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% for alumno in listaAlumnos %}
+    {% if alumno.note > 4 %}
+        <h2>{% fa5_icon 'smile-beam' 'fas' color='rgb(70, 129, 218)' title='Aprobados' %} {{ alumno.studen }}</h2>
+    {% else %}
+        <h2>{% fa5_icon 'sad-tear' 'fas' color='rgb(209, 16, 16)' title='Suspensos' %} {{ alumno.studen }}</h2>
+    {% endif %}
+        <div class="container-fluid">
+        <div class="row">
+            <div id="image" class="col-md-3">
+                <a class="link-photo" data-lightbox="img" href="{{ alumno.photo.url }}" title="{{alumno.studen}}">
+                    <img src="{{ alumno.photo.url }}" alt="{{alumno.studen}}" class="img-thumbnail" title="{{alumno.studen}}">
+                </a>
+            </div>
+            <div id="info" class="col-md-9">
+                <p>Titulación: <i>{{ alumno.title }}</i></p>
+                <p>Estudiante: <i>{{ alumno.studen }}</i></p>
+                <p>Nota puntuada: <i>{{ alumno.note }}</i></p>
+                <p>Observaciones: <i>{{ alumno.comentary}}</i></p>
+                <p>Fecha Titulación: <i>{{ alumno.datetitulation  }}</i></p>
+                <p>Fecha Matriculación: <i>{{ alumno.datematriculation }}</i></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}
+</div>
+
+{% include 'footer.html' %}
+<script src="{% static 'js/executionMenu.js' %}"></script>
+<script src="{% static 'js/lightbox.min.js' %}"></script>
+
+{% include 'endHtml.html' %}

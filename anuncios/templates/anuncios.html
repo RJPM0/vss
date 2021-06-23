@@ -1,53 +1,54 @@
 {% load static %}
-{% load bootstrap4 %}
+{% include 'starHtml.html' %}
+<title>Centros</title>
+{% include 'navBar.html' %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="javascript:history.go(-1)">Inicio</a></li>
+</ol>
 
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="styleSheet" href="{% static 'css/estilos.css' %}">
-    <title>Lista de anuncios</title>
-    <style>
-        body{
-            color:black;
-            font-size:1em;
-        }
-        p{
-            text-align: left;
-            margin:0px;
-        }
-    </style>
-</head>
-<body>
-    <div id="content">
+<h1>Centros</h1>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+    type specimen book. </p>
+
+
+<div class="container" style="min-height:50%;">
+    <ul class="list-group" style=" cursor:pointer;">
         {% block content %}
-            <h1>Lista de anunc ios</h1>
-            {% for anuncio in anuncios %}
-            <h2>{{ anuncio.studen }}</h2>
-            
-                <div class="container-fluid" >
-                    <div class="row">
-                        <div id="image" class="col-md-3">
-                            <img src="{{ anuncio.photo.url }}" class="img-thumbnail" alt="{{anuncio.studen}}">
-                        </div>
-                        <div id="info" class="col-md-9">
-                            <p>Titulación: <i>{{ anuncio.title }}</i></p>
-                            <p>Estudiante: <i>{{ anuncio.studen }}</i></p>
-                            <p>Nota puntuada: <i>{{ anuncio.note }}</i></p>
-                            <p>Observaciones: <i>{{ anuncio.comentary}}</i></p>
-                            <p>Fecha Titulación: <i>{{ anuncio.datetitulation  }}</i></p>
-                            <p>Fecha Matriculación: <i>{{ anuncio.datematriculation }}</i></p>
-                        </div>
-                    </div>
-                    
+        {% for centro in listaCentros %}
+
+        <li class="list-group-item mt-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <a class="link-photo" data-lightbox="img" href="{{ centro.photo.url }}" title="{{ centro.name }}">
+                        <img src="{{ centro.photo.url }}" alt="{{ centro.name }}" class="img-fluid" title="{{ centro.name }}">
+                    </a>
+                    <p class="mt-1">
+                        <strong><img src="{% static 'svg/address.svg' %}" alt="" width="25" title="Dirección"></strong>
+                        {{ centro.address}}
+                    </p>
                 </div>
-            
-            {% endfor %}
+                <div class="col-md-8 align-middle">
+                    <a href="{% url 'cursos_list' %}?id={{ centro.id }}" class="centros">
+                        <!-- <div> -->
+                            <p><strong>Nombre Centro:</strong>
+                                <h5>Instituto {{ centro.name }}</h5>
+                            </p>
+                            <p>
+                                <strong>Descripción:</strong> {{ centro.description }}
+                            </p>
+                            <p><strong><img src="{% static 'svg/live_year.svg' %}" alt="" width="25"
+                                        title="En servicio"></strong> {{ centro.anyos_open }} años</p>
+                        <!-- </div> -->
+                    </a>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
         {% endblock %}
-    </div>
-</body>
-</html>
+    </ul>
+</div>
+{% include 'footer.html' %}
+<script src="{% static 'js/executionMenu.js' %}"></script>
+<script src="{% static 'js/lightbox.min.js' %}"></script>
+{% include 'endHtml.html' %}
